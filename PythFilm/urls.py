@@ -112,6 +112,12 @@ urlpatterns = [
     path('checkout/', views.check_out, name='check_out'),
 
     path('tao-xuat-chieu/', views.tao_xuat_chieu_tu_dong, name='tao_xuat_chieu'),
+    
+    #Contact quan
+    path('contact/', views.contact_view, name='contact'),
+    path('lienhe/', views.contact_list, name='danh_sach_lien_he'),
+    path('lienhe/sua/<int:pk>/', views.contact_edit, name='sua_lien_he'),
+    path('lienhe/xoa/<int:id>/', views.contact_delete, name='xoa_lien_he'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

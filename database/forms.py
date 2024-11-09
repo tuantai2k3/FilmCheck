@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Phim, NguoiDung, TheLoai, DinhDangPhim, XuatChieu, RapChieu, Ve, GheNgoi, Combo, BinhLuan
+from .models import Phim, NguoiDung, TheLoai, DinhDangPhim, XuatChieu, RapChieu, Ve, GheNgoi, Combo, BinhLuan, Contact
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -106,3 +106,9 @@ class XuatChieuFormTuDong(forms.Form):
     rap_chieu = forms.ModelChoiceField(queryset=RapChieu.objects.all(), label="Rạp chiếu")
     dinh_dang_phim = forms.ModelChoiceField(queryset=DinhDangPhim.objects.all(), label="Định dạng phim")
     ngay_chieu = forms.DateField(label="Ngày chiếu", widget=forms.DateInput(attrs={'type': 'date'}))
+    
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'subject', 'message']
+        
