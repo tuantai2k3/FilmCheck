@@ -8,7 +8,6 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'home.html')  # Render a home page template
 
-
 # View để hiển thị danh sách phim
 def danh_sach_phim(request):
     ds_phim = Phim.objects.all()
@@ -44,8 +43,6 @@ def xoa_phim(request, id):
         phim.delete()
         return redirect('danh_sach_phim')
     return render(request, 'base/xoa_phim.html', {'phim': phim})
-
-
 
 from .models import NguoiDung
 from .forms import NguoiDungForm
@@ -376,7 +373,32 @@ def xoa_combo(request, id):
         return redirect('danh_sach_combo')
     return render(request, 'base/xoa_combo.html', {'combo': combo})
 
+#SELECTCOMBODB
+from django.shortcuts import render
+from .models import Combo
+def select_combo(request):
+    # Lấy tất cả dữ liệu từ bảng Combo
+    combos = Combo.objects.all()
+    # Trả về template cùng với dữ liệu combo
+    return render(request, 'comboselect/select_combo.html', {'combos': combos})
 
+#CHECKOUT
+from django.shortcuts import render
+def check_out(request):
+    # Ticket information
+    ticket_info = {
+        'name': 'Thái Tuấn Tài',
+        'email': 'tuantai2k3bmt@gmail.com',
+        'phone': '0856232252',
+        'cinema': 'STARLIGHT BUÔN MA THUỘT',
+        'room': '05',
+        'movie_name': 'CÔ DÂU HÀO MÔN (T18)',
+        'time': '20:30 - 06/11/2024',
+        'seat': 'D06',
+        'ticket_price': 50000,
+        'total_price': 50000,
+    }
+    return render(request, 'checkout/check_out.html', {'ticket_info': ticket_info})
 
 
 
@@ -579,3 +601,11 @@ def user_login(request):
             return redirect('login')
 
     return render(request, 'user/login.html')
+#Seat
+from django.shortcuts import render
+from .models import GheNgoi
+
+def seat_selection(request):
+    # Fetch seat data from the database
+    seats = GheNgoi.objects.all()
+    return render(request, 'seats/seat.html', {'seats': seats})

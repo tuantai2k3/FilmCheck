@@ -294,12 +294,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Bảng Combo (Combo)
 class Combo(models.Model):
-    ten_combo = models.CharField(max_length=100)  # Tên combo
-    gia_combo = models.DecimalField(max_digits=10, decimal_places=2)  # Giá combo
+    ten_combo = models.CharField(max_length=255)
+    gia_combo = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.ten_combo} - {self.gia_combo}"
-
+        return self.ten_combo
+    
 # Bảng Rạp Chiếu (Cinema)
 class RapChieu(models.Model):
     ten_rap = models.CharField(max_length=200)  # Tên rạp chiếu

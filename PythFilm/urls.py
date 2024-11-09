@@ -104,7 +104,14 @@ urlpatterns = [
     path('film/<int:phim_id>/', views.film_detail, name='film_detail'),
     
     
-        path('tao-xuat-chieu/', views.tao_xuat_chieu_tu_dong, name='tao_xuat_chieu'),
+    #tai
+    path('comboselect/', views.select_combo, name='select_combo'),
+    
+    #seat quan
+    path('seats/', views.seat_selection, name='seat_selection'),
+    path('checkout/', views.check_out, name='check_out'),
+
+    path('tao-xuat-chieu/', views.tao_xuat_chieu_tu_dong, name='tao_xuat_chieu'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -226,13 +225,13 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            {% comment %} <div class="col-lg-3 col-md-6 col-sm-12" style="align-items: center; display: flex;">
+            <div class="col-lg-3 col-md-6 col-sm-12" style="align-items: center; display: flex;">
                 <div class="note-color" style="width:100%">
                     <div class="note-col" style="width:100%">
-                        <a href="{% url 'confirm_payment' %}" style="border-radius: 0; padding: 13px; background: #f37737; border-color: yellow; width: 70%; color: #fff;" class="btn btn-success">Tiếp theo</a>
-                    </div>
+                       <a onclick="nextStep('{% url 'check_out' %}')" class="btn btn-success">Tiếp theo</a>
+         </div>
                 </div>
-            </div> {% endcomment %}
+                
             
                 <div class="clearfix"></div>
             </div>
@@ -361,6 +360,26 @@
             }
         });
     }
+    
+    let selectedCombos = {};
+        
+        function updateComboList(comboId, comboName, quantity) {
+            if (quantity > 0) {
+                selectedCombos[comboId] = `${comboName} x ${quantity}`;
+            } else {
+                delete selectedCombos[comboId];
+            }
+            displaySelectedCombos();
+        }
+        function displaySelectedCombos() {
+            const comboList = document.getElementById("total_ticket");
+            comboList.innerHTML = '';
+            for (let combo in selectedCombos) {
+                const comboItem = document.createElement("p");
+                comboItem.innerText = selectedCombos[combo];
+                comboList.appendChild(comboItem);
+            }
+        }
         // Hàm tăng số lượng
         function plusCombo(id) {
             const input = document.getElementById(id);
